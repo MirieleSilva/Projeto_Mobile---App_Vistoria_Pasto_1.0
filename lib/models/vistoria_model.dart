@@ -3,26 +3,29 @@ import '../services/vistoria_service.dart';
 
 class VistoriaModel extends ChangeNotifier {
   List<Map<String, dynamic>> _vistorias = [];
+  final VistoriaServiceBase service;
+
+  VistoriaModel({required this.service});
 
   List<Map<String, dynamic>> get vistorias => _vistorias;
 
   Future<void> loadVistorias() async {
-    _vistorias = await VistoriaService.loadVistorias();
+    _vistorias = await service.loadVistorias();
     notifyListeners();
   }
 
   Future<void> addVistoria(Map<String, dynamic> vistoria) async {
-    await VistoriaService.addVistoria(vistoria);
+    await service.addVistoria(vistoria);
     await loadVistorias();
   }
 
-  Future<void> updateVistoria(int index, Map<String, dynamic> novaVistoria) async {
-    await VistoriaService.updateVistoria(index, novaVistoria);
+  Future<void> updateVistoria(String id, Map<String, dynamic> novaVistoria) async {
+    await service.updateVistoria(id, novaVistoria);
     await loadVistorias();
   }
 
-  Future<void> deleteVistoria(int index) async {
-    await VistoriaService.deleteVistoria(index);
+  Future<void> deleteVistoria(String id) async {
+    await service.deleteVistoria(id);
     await loadVistorias();
   }
 }

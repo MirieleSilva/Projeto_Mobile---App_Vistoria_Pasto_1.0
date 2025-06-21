@@ -3,12 +3,15 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../models/vistoria_model.dart';
+import 'package:weather_package/weather_package.dart';
 
 class VistoriaForm extends StatefulWidget {
   final Map<String, dynamic>? vistoria;
-  final int? index;
 
-  VistoriaForm({Key? key, this.vistoria, this.index}) : super(key: key);
+  // Função opcional para mockar a obtenção de temperatura (usada nos testes)
+  final Future<String> Function(double, double)? getTemperatureFn;
+
+  VistoriaForm({Key? key, this.vistoria, this.getTemperatureFn}) : super(key: key);
 
   @override
   _VistoriaFormState createState() => _VistoriaFormState();
@@ -195,6 +198,12 @@ class _VistoriaFormState extends State<VistoriaForm> {
                           : DateFormat('dd/MM/yyyy HH:mm:ss').format(
                           DateTime.now().toUtc().subtract(const Duration(hours: 3)));
 
+                      // Usa função mockada se fornecida, senão usa a real
+                      final temperatura = await (widget.getTemperatureFn ?? WeatherService.getTemperature)(
+                        latitude,
+                        longitude,
+                      );
+
                       Map<String, dynamic> novaVistoria = {
                         'nomeResponsavel': nomeResponsavel,
                         'numeroPasto': numeroPasto,
@@ -205,12 +214,13 @@ class _VistoriaFormState extends State<VistoriaForm> {
                         'dataHora': dataHora,
                         'latitude': latitude,
                         'longitude': longitude,
+                        'temperatura': temperatura,
                       };
 
                       final vistoriaModel = context.read<VistoriaModel>();
 
-                      if (widget.vistoria != null && widget.index != null) {
-                        await vistoriaModel.updateVistoria(widget.index!, novaVistoria);
+                      if (widget.vistoria != null) {
+                        await vistoriaModel.updateVistoria(widget.vistoria!['id'], novaVistoria);
                       } else {
                         await vistoriaModel.addVistoria(novaVistoria);
                       }

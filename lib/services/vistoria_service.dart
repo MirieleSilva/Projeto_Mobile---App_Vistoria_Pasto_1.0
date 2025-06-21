@@ -1,53 +1,39 @@
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class VistoriaService {
-  static const String _key = 'vistorias';
-
-
-
-  static Future<void> saveVistorias(List<Map<String, dynamic>> vistorias) async {
-    final prefs = await SharedPreferences.getInstance();
-    String jsonString = jsonEncode(vistorias);
-    await prefs.setString(_key, jsonString);
-  }
-
-  // Carregar a lista de vistorias
-  static Future<List<Map<String, dynamic>>> loadVistorias() async {
-    final prefs = await SharedPreferences.getInstance();
-    String? jsonString = prefs.getString(_key);
-    if (jsonString != null) {
-      List<dynamic> decoded = jsonDecode(jsonString);
-      return decoded.cast<Map<String, dynamic>>();
-    }
-    return [];
-  }
-
-  // Adicionar uma nova vistoria
-  static Future<void> addVistoria(Map<String, dynamic> vistoria) async {
-    List<Map<String, dynamic>> vistorias = await loadVistorias();
-    vistorias.add(vistoria);
-    await saveVistorias(vistorias);
-  }
-
-  // Deletar uma vistoria
-  static Future<void> deleteVistoria (int index) async{
-    List<Map<String, dynamic>> vistorias = await loadVistorias();
-    if (index >= 0 && index < vistorias.length){
-      vistorias.removeAt(index);
-      await saveVistorias(vistorias);
-    }
-
-  }
-  // Editar uma vistoria
-  static Future<void> updateVistoria(int index, Map<String, dynamic> novaVistoria) async {
-    List<Map<String, dynamic>> vistorias = await loadVistorias();
-    if (index >= 0 && index < vistorias.length) {
-      vistorias[index] = novaVistoria;
-      await saveVistorias(vistorias);
-    }
-  }
-
-
+abstract class VistoriaServiceBase {
+  Future<List<Map<String, dynamic>>> loadVistorias();
+  Future<void> addVistoria(Map<String, dynamic> vistoria);
+  Future<void> updateVistoria(String id, Map<String, dynamic> novaVistoria);
+  Future<void> deleteVistoria(String id);
 }
+
+class VistoriaService implements VistoriaServiceBase {
+  static final _collection = FirebaseFirestore.instance.collection('vistorias');
+
+  @override
+  Future<List<Map<String, dynamic>>> loadVistorias() async {
+    final snapshot = await _collection.get();
+    return snapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
+  }
+
+  @override
+  Future<void> addVistoria(Map<String, dynamic> vistoria) async {
+    await _collection.add(vistoria);
+  }
+
+  @override
+  Future<void> updateVistoria(String id, Map<String, dynamic> novaVistoria) async {
+    await _collection.doc(id).update(novaVistoria);
+  }
+
+  @override
+  Future<void> deleteVistoria(String id) async {
+    await _collection.doc(id).delete();
+  }
+}
+
 

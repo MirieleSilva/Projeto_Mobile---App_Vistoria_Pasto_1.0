@@ -2,14 +2,14 @@
 
 Aplicativo mobile desenvolvido para registrar, organizar e consultar vistorias em pastagens de forma prática e eficiente.
 
-## Funcionalidades
+## Sobre Firebase Firestore
 
-- Cadastro de vistorias.
-- Registro de localização da vistoria via GPS.
-- Lista de vistorias com opção de excluir.
-- isualização de detalhes com mapa com opção de editar.
+- Utilizado para salvar todas as vistorias e para traze-las para serem mostradas na tela Home.
 
-## Capturas de Tela
+<h3>📋 Lista de Vistorias no Firestore</h3>
+<img src="imagens/firestore-vistorias.png" alt="Lista de Vistorias" width="500"/>
+
+## Capturas de Tela da aplicação
 
 <h3>📋 Lista de Vistorias</h3>
 <img src="imagens/lista-vistorias.png" alt="Lista de Vistorias" width="500"/>
@@ -21,11 +21,14 @@ Aplicativo mobile desenvolvido para registrar, organizar e consultar vistorias e
 <img src="imagens/mapa-vistoria.png" alt="Mapa da Vistoria" width="500"/>
 
 
+## Sobre package
 
-## Tecnologias
+- Criei um package responsavel por chamar uma api externa chamada  Open Weather que fornece á
+aplicação a temperatura do local da vistoria.
 
-- Flutter
-- Dart
-- Geolocator
+- Na imagem onde mostra os detalhes de uma vistoria é possivel ver a temperatura sendo adicionada.
+
+## Sobre Build
+Fiz build apenas para Android, o arquivo apk se encontra na raiz do projeto.
 
 

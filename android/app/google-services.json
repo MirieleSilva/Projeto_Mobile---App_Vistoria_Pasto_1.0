@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "561024728507",
+    "project_id": "farmview-68873",
+    "storage_bucket": "farmview-68873.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561024728507:android:aca10ec22a11890536189e",
+        "android_client_info": {
+          "package_name": "com.farmview.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAhOO3F1BgOAa6q4O3IG0ye6v0MlYXx58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

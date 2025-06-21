@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
                   if (!vistoria['colocouSal']) Text('Nível de Sal: ${vistoria['nivelSal']}'),
                   Text('Observação: ${vistoria['observacao']}'),
                   Text('Data/Hora: ${vistoria['dataHora']}'),
+                  Text('Temperatura: ${vistoria['temperatura']}'),
                   const SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
@@ -60,7 +61,6 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (_) => VistoriaForm(
                       vistoria: vistoria,
-                      index: index,
                     ),
                   ),
                 );
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Vistoria de Gado')),
+        title: const Center(child: Text('FarmView')),
         backgroundColor: Colors.green,
       ),
       body: vistorias.isEmpty
@@ -120,7 +120,7 @@ class HomePage extends StatelessWidget {
             },
             trailing: ElevatedButton(
               onPressed: () async {
-                await context.read<VistoriaModel>().deleteVistoria(index);
+                await context.read<VistoriaModel>().deleteVistoria(vistoria['id']);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
