@@ -6,18 +6,18 @@ Aplicativo mobile desenvolvido para registrar, organizar e consultar vistorias e
 
 - Utilizado para salvar todas as vistorias e para traze-las para serem mostradas na tela Home.
 
-<h3>📋 Lista de Vistorias no Firestore</h3>
+<h3> Lista de Vistorias no Firestore</h3>
 <img src="imagens/firestore-vistorias.png" alt="Lista de Vistorias" width="500"/>
 
 ## Capturas de Tela da aplicação
 
-<h3>📋 Lista de Vistorias</h3>
+<h3> Lista de Vistorias</h3>
 <img src="imagens/lista-vistorias.png" alt="Lista de Vistorias" width="500"/>
 
-<h3>📝 Cadastro de Vistoria</h3>
+<h3> Cadastro de Vistoria</h3>
 <img src="imagens/cadastro-vistoria.png" alt="Cadastro de Vistoria" width="500"/>
 
-<h3>🗺️ Mapa com Edição</h3>
+<h3> Mapa com Edição</h3>
 <img src="imagens/mapa-vistoria.png" alt="Mapa da Vistoria" width="500"/>
 
 ## Sobre package
@@ -31,7 +31,7 @@ aplicação a temperatura do local da vistoria.
 
 - A aplicação esta coberta por 57% de testes
 
-<h3>🗺️ Cobertura de testes</h3>
+<h3> Cobertura de testes</h3>
 <img src="imagens/testes.png" alt="testes" width="500"/>
 
 ## Sobre Build
