@@ -20,13 +20,19 @@ Aplicativo mobile desenvolvido para registrar, organizar e consultar vistorias e
 <h3>🗺️ Mapa com Edição</h3>
 <img src="imagens/mapa-vistoria.png" alt="Mapa da Vistoria" width="500"/>
 
-
 ## Sobre package
 
 - Criei um package responsavel por chamar uma api externa chamada  Open Weather que fornece á
 aplicação a temperatura do local da vistoria.
 
 - Na imagem onde mostra os detalhes de uma vistoria é possivel ver a temperatura sendo adicionada.
+
+## Sobre testes
+
+- A aplicação esta coberta por 57% de testes
+
+<h3>🗺️ Cobertura de testes</h3>
+<img src="imagens/testes.png" alt="testes" width="500"/>
 
 ## Sobre Build
 Fiz build apenas para Android, o arquivo apk se encontra na raiz do projeto.
