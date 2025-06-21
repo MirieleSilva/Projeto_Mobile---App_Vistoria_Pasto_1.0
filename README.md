@@ -29,7 +29,7 @@ aplicação a temperatura do local da vistoria.
 
 ## Sobre testes
 
-- A aplicação esta coberta por 57% de testes
+- A aplicação esta coberta por 57% de testes.
 
 <h3> Cobertura de testes</h3>
 <img src="imagens/testes.png" alt="testes" width="500"/>
